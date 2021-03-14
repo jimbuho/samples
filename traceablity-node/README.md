@@ -1,6 +1,6 @@
-# Xooa Balance-Transfer-Node Smart Contract
+# Xooa Traceability Smart Contract
 
-This page provides an overview to Xooa Balance-Transfer-Node Smart Contract functionalities written.
+This page provides an overview to Xooa Traceability Smart Contract functionalities written.
 
 This smart contract runs on `Hyperledger Fabric` and is written in `JavaScript`.
 
@@ -17,25 +17,25 @@ This smart contract provides 3 functions:
 
 #### Invoke
 
-Invoke method is used to transfer balance from one account to other.
-This method expects three arguments `[ "<sender account>", "<recipient account>", "<amount to transfer>" ]`.
+Invoke method is used to post a trace information
+This method expects fire arguments `[ "<product code>", "<step name>", "<content>", "<location>", "<datetime>" ]`.
 
 
 #### Query
 
-Set method is used to query balance of an account.
-This method expects an argument `[ "<account>" ]`.
+Set method is used to query a post by his code formed of productCode + step
+This method expects an argument `[ "<key>" ]`.
 
 
 #### Delete
 
-This method is used to delete the account from world state.
-This method expects an argument `[ "<account>" ]`.
+This method is used to delete the post from world state.
+This method expects an argument `[ "<key>" ]`.
 
 
-## Deploy the Xooa-Balance-Transfer-Node smart contract 
+## Deploy the Xooa-Traceability smart contract 
  
-1. Follow the instructions here: https://docs.xooa.com/start.html#deploy-the-smart-contract-app, selecting the **Xooa-Balance-Transfer-Node** as the smart contract.
+1. Follow the instructions here: https://docs.xooa.com/start.html#deploy-the-smart-contract-app, selecting the **Xooa-Traceability-Node** as the smart contract.
 
 2. Record the **API Token** when it is shown: you will need it to authorize API requests from Swagger.
 
@@ -47,7 +47,7 @@ This method expects an argument `[ "<account>" ]`.
 
 
 
-## Explore the Xooa-Balance-Transfer-Node smart Contract end-points
+## Explore the Xooa-Traceability-Node smart Contract end-points
 
 1. Go to the **API** tab, and  under API Explorer paste API Token and click **Authorize API** .
 

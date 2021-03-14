@@ -61,3 +61,25 @@ Apps:
     language: solidity
     truffle: true
     README: https://github.com/Xooa/samples/blob/master/README.md
+  Xooa-Traceability:
+    Name: Traceability
+    Description: Xooa Traceability
+    path: /trace-post-node
+    language: node
+    FunctionAndArgsDefinitions:
+    - functionName: invoke
+      arguments:
+      - name: ProductCode
+        description: Product Profile Code of Pingecko
+      - name: Step
+        description: Step Name of Pingecko
+      - name: Content
+        description: Contenido o detalle de este post
+      - name: Location
+        description: Geolocalizacion en formato LON,LAT
+      - name: Datetime
+        description: Fecha hora en que ocurre el evento
+    - functionName: delete
+      arguments:
+      - name: Account
+        description: Account to be deleted
