@@ -1,0 +1,362 @@
+{
+	"swagger": "2.0",
+	"info": {},
+	"host": "localhost:3002",
+	"basePath": "/api/v2",
+	"paths": {
+		"/invoke/invoke": {
+			"post": {
+				"summary": "Submit a Post",
+				"description": "",
+				"tags": [
+					"post-trace"
+				],
+				"operationId": "invoke",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "args",
+						"type": "array",
+						"required": false,
+						"description": "Argument(s) to pass to the blockchain Smart Contract app function, such as blockchain transaction payload. Argument(s) will be passed as argument(s) to Smart Contract function.",
+						"schema": {
+							"$ref": "#/definitions/SetParams"
+						}
+					},
+					{
+                        "in": "query",
+                        "name": "Async",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Call this request asynchronously without waiting for response.",
+                        "default": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "Timeout",
+                        "type": "number",
+                        "required": false,
+                        "description": "Request timeout in millisecond.",
+                        "default": 5000
+                    }
+				],
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success. Processing complete."
+					},
+					"202": {
+						"description": "Success. Queued for processing."
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
+				}
+			}
+		},
+		"/query/query": {
+			"post": {
+				"summary": "Get submited post",
+				"description": "",
+				"tags": [
+					"post-trace"
+				],
+				"operationId": "query",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "args",
+						"type": "array",
+						"required": false,
+						"description": "Argument(s) to pass to the blockchain Smart Contract app function, argument(s) will be passed as argument(s) to Smart Contract function.",
+						"schema": {
+							"$ref": "#/definitions/GetParams"
+						}
+					},
+					{
+                        "in": "query",
+                        "name": "Async",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Call this request asynchronously without waiting for response.",
+                        "default": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "Timeout",
+                        "type": "number",
+                        "required": false,
+                        "description": "Request timeout in millisecond.",
+                        "default": 5000
+                    }
+				],
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success. Processing complete."
+					},
+					"202": {
+						"description": "Success. Queued for processing."
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
+				}
+			}
+		},
+		"/invoke/delete": {
+			"post": {
+				"summary": "Delete the post",
+				"description": "",
+				"tags": [
+					"submit-post"
+				],
+				"operationId": "delete",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "args",
+						"type": "array",
+						"required": false,
+						"description": "Argument(s) to pass to the blockchain Smart Contract app function, such as blockchain transaction payload. Argument(s) will be passed as argument(s) to Smart Contract function.",
+						"schema": {
+							"$ref": "#/definitions/DeleteParams"
+						}
+					},
+					{
+                        "in": "query",
+                        "name": "Async",
+                        "type": "boolean",
+                        "required": false,
+                        "description": "Call this request asynchronously without waiting for response.",
+                        "default": false
+                    },
+                    {
+                        "in": "query",
+                        "name": "Timeout",
+                        "type": "number",
+                        "required": false,
+                        "description": "Request timeout in millisecond.",
+                        "default": 5000
+                    }
+				],
+				"security": [
+					{
+						"Bearer": []
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Success. Processing complete."
+					},
+					"202": {
+						"description": "Success. Queued for processing."
+					},
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal server error"
+					}
+				}
+			}
+		},
+		"/results/{ResultId}": {
+			"get": {
+			  "summary": "Get Result for a resultId.",
+			  "description": "This endpoint returns the result of previously submitted api request.",
+			  "tags": [
+				"Results"
+			  ],
+			  "operationId": "Result",
+			  "consumes": [
+				"application/json"
+			  ],
+			  "produces": [
+				"application/json"
+			  ],
+			  "parameters": [
+				{
+				  "in": "path",
+				  "name": "ResultId",
+				  "type": "string",
+				  "required": false,
+				  "description": "Returned in previous Query/Invoke/Participant Operation.",
+				  "default": ""
+				}
+			  ],
+			  "security": [
+				{
+				  "Bearer": []
+				}
+			  ],
+			  "responses": {
+				"200": {
+				  "description": "Processing complete",
+				  "schema": {
+					"$ref": "#/definitions/FinalTransactionResponse"
+				  }
+				},
+				"202": {
+				  "description": "Processing pending",
+				  "schema": {
+					"$ref": "#/definitions/PendingTransactionResponse"
+				  }
+				},
+				"401": {
+				  "description": "Missing or invalid API Token"
+				},
+				"403": {
+				  "description": "Forbidden/Insufficient permissions to perform this operation"
+				},
+				"404": {
+				  "description": "Result Id not found"
+				},
+				"500": {
+				  "description": "Internal server error"
+				}
+			  }
+			}
+		  }
+	},
+	"definitions": {
+		"PendingTransactionResponse": {
+			"title": "Pending Transaction Response",
+			"description": "",
+			"type": "object",
+			"properties": {
+				"resultURL": {
+					"description": "URL to use for fetching the result",
+					"type": "string"
+				},
+				"resultId": {
+					"description": "Result Id",
+					"type": "string"
+				}
+			},
+			"required": [
+				"resultId",
+				"resultURL"
+			],
+			"example": {
+				"resultURL": "string",
+				"resultId": "string"
+			}
+		},
+		"FinalTransactionResponse": {
+			"title": "Final Transaction Response",
+			"description": "",
+			"type": "object",
+			"properties": {
+				"requestType": {
+					"title": "Request Type",
+					"description": "Result for the type of request",
+					"type": "string"
+				},
+				"result": {
+					"title": "Specific Response Result",
+					"description": "The Response result appropriate for original API request",
+					"type": "object"
+				}
+			},
+			"required": [
+				"requestType",
+				"result"
+			],
+			"example": {
+				"requestType": "string",
+				"result": {}
+			}
+		},
+		"SetParams": {
+			"title": "Args",
+			"description": "Array of arguments",
+			"type": "array",
+			"items": {
+				"title": "Arguments",
+				"description": "Key Value pair",
+				"type": "string"
+			},
+			"example": ["000000000001", "PLAN", "Planificacion realizada","0,0","2001-01-01 00:01"]
+		},
+		"GetParams": {
+			"title": "Args",
+			"description": "Array of arguments",
+			"type": "array",
+			"items": {
+				"title": "Arguments",
+				"description": "Key Value pair",
+				"type": "string"
+			},
+			"example": ["000000000001", "PLAN"]
+		},
+		"DeleteParams": {
+			"title": "Args",
+			"description": "Array of arguments",
+			"type": "array",
+			"items": {
+				"title": "Arguments",
+				"description": "Key Value pair",
+				"type": "string"
+			},
+			"example": ["000000000001", "PLAN"]
+		}
+	},
+	"securityDefinitions": {
+		"Bearer": {
+			"name": "Authorization",
+			"in": "header",
+			"type": "apiKey"
+		}
+	}
+}
